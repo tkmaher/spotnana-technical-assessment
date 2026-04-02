@@ -2,6 +2,8 @@
 
 Welcome! This is a lightweight chatbot web app created for my technical assessment with Spotnana. The frontend is a single-page Next.js application written using TypeScript and hosted on Cloudflare Pages. The backend is a serverless Cloudflare Workers-based [Hono](https://hono.dev/) API. It queries the Google Gemini 3.1 API to return responses to the user and remembers conversations across sessions that have occured on the same browser. I used [Sass](https://sass-lang.com/) and [Motion](https://motion.dev/) for styling.
 
+The main frontend code can be found in /components/chat.tsx. The backend is located in /backend/spotnana-technical-assessment/src/index.ts. The stylesheet is /app/globals.scss.
+
 ## [Visit the chatbot here.](https://spotnana-technical-assessment.pages.dev/)
 
 ## Features

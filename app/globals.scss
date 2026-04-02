@@ -269,6 +269,19 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+.button-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  .confirm {
+    background-color: #dd7b7b;
+    &:hover {
+      background-color: #dd4c4c;
+      color: var(--foreground);
+    }
+  }
+}
   
 // ─── Mobile ───────────────────────────────────────────────────────────────
 

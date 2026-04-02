@@ -47,7 +47,8 @@ export default function Chat() {
   const [chatLog, setChatLog]       = useState<Message[]>([]);
   const [input, setInput]           = useState("");
   const [fetching, setFetching]     = useState(true);
-  const [loading, setLoading]       = useState(false);
+  const [deleting, setDeleting]       = useState(false);
+  const [clearing, setClearing]     = useState<boolean>(false);
   const [error, setError]           = useState<string | null>(null);
   const [thinking, setThinking]     = useState(false);
   const sessionId                   = useRef("");
@@ -101,9 +102,15 @@ export default function Chat() {
     }
   };
 
+  const triggerClear = () => {
+    if (deleting || thinking || error) return;
+    setClearing(true);
+  }
+
   const clearChat = async () => {
-    if (loading || thinking || error) return;
-    setLoading(true);
+    if (deleting || thinking || error) return;
+    setDeleting(true);
+    setClearing(false);
     try {
       const res = await fetch(API_URL, {
         method: "DELETE",
@@ -115,12 +122,12 @@ export default function Chat() {
       console.error("Clear error:", err.message);
       setError("Couldn't clear the chat. Please try again.");
     }
-    setLoading(false);
+    setDeleting(false);
     textareaRef.current?.focus();
   };
 
   const handleSubmit = async () => {
-    if (!input.trim() || thinking || loading || error || fetching) return;
+    if (!input.trim() || thinking || deleting || error || fetching) return;
     const msg = input;
     setInput("");
     setChatLog(prev => [...prev, { id: crypto.randomUUID(), message: msg, role: "user" }]);
@@ -182,14 +189,14 @@ export default function Chat() {
           ))}
         </AnimatePresence>
         <AnimatePresence>
-          {loading && (
+          {deleting && (
             <motion.div
               className="bubble loader"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
             >
-              Loading...
+              Deleting...
             </motion.div>
           )}
         </AnimatePresence>
@@ -218,7 +225,7 @@ export default function Chat() {
               >
                 <button
                   aria-label="Submit chat"
-                  className={(loading || thinking || fetching) ? "button-disabled bubble" : "bubble"}
+                  className={(deleting || thinking || fetching) ? "button-disabled bubble" : "bubble"}
                   onClick={handleSubmit}
                 >
                   →
@@ -238,8 +245,8 @@ export default function Chat() {
             >
               <button
                 aria-label="Clear chat"
-                className={(loading || thinking || fetching || !!error) ? "button-disabled bubble" : "bubble"}
-                onClick={clearChat}
+                className={(deleting || thinking || fetching || !!error) ? "button-disabled bubble" : "bubble"}
+                onClick={triggerClear}
               >
                 Clear chat...
               </button>
@@ -265,6 +272,35 @@ export default function Chat() {
             >
               OK
             </button>
+          </motion.div>
+        )}
+        {clearing && (
+          <motion.div
+            className="blurrer error-msg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            onClick={() => setClearing(false)}
+          >
+            <div>Delete chat history?</div>
+            <div className="button-flex">
+              <button
+                aria-label="Confirm chat deletion"
+                className="bubble confirm"
+                onClick={clearChat}
+              >
+                Delete
+              </button>
+              <button
+                aria-label="Cancel chat deletion"
+                className="bubble"
+                onClick={() => setClearing(false)}
+                autoFocus
+              >
+                Cancel
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -132,6 +132,11 @@ body {
 
 }
 
+.shine-load .msg-spacer {
+  pointer-events: none;
+  opacity: 0;
+}
+
 .shine-load .msg {
   position: relative;
   overflow: hidden;

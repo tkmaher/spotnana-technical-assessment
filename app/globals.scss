@@ -97,30 +97,40 @@ body {
   flex-direction: column;
 }
 
-// ─── Bubble ───────────────────────────────────────────────────────────────────
+.msg-parent {
+  &.msg-right { 
+    align-self: flex-end; 
+    .msg-button {
+      float: right;
+    }
+  }
+  &.msg-left  { align-self: flex-start; }
+  width: fit-content;
+  max-width: 75%;
+  &:hover {
+    .msg-button {
+      opacity: 1;
+    }
+  }
+  .msg-button {
+    font-size: 0.8em;
+    opacity: 0;
+    padding: 0.4em 1.2em;
+    cursor: pointer;
+    width: fit-content;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  margin-bottom: 1em;
 
-.bubble {
-  border: 0.5px solid var(--foreground);
-  background-color: var(--background-trans);
-  backdrop-filter: blur(3px);
-  border-radius: 15px;
-}
-
-.loader {
-  align-self: center;
-  padding: 1em;
-  animation: pulse 2s linear infinite alternate;
 }
 
 .msg {
-  width: fit-content;
-  max-width: 75%;
+  
   padding: 0 0.8rem;
-  margin-bottom: 1em;
   transition: height 0.2s ease;
 
-  &.msg-right { align-self: flex-end; }
-  &.msg-left  { align-self: flex-start; }
 }
 
 .shine-load .msg {
@@ -143,6 +153,22 @@ body {
     animation: shine 1.5s ease-in-out infinite;
   }
 }
+
+// ─── Bubble ───────────────────────────────────────────────────────────────────
+
+.bubble {
+  border: 0.5px solid var(--foreground);
+  background-color: var(--background-trans);
+  backdrop-filter: blur(3px);
+  border-radius: 15px;
+}
+
+.loader {
+  align-self: center;
+  padding: 1em;
+  animation: pulse 2s linear infinite alternate;
+}
+
 
 // ─── Input Form ───────────────────────────────────────────────────────────────
 

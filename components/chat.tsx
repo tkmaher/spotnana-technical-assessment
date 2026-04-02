@@ -19,9 +19,26 @@ interface ApiResponse {
 }
 
 function MessageBubble({ msg }: { msg: Message }) {
+  const [copied, setCopied] = useState(false);
   return (
-    <div className={`bubble msg ${msg.role === "user" ? "msg-right" : "msg-left"}`}>
-      <ReactMarkdown>{msg.message}</ReactMarkdown>
+    <div 
+      className={`msg-parent ${msg.role === "user" ? "msg-right" : "msg-left"}`}
+      onMouseLeave={() => setCopied(false)}
+    >
+      <div className={`bubble msg`}>
+        <ReactMarkdown>{msg.message}</ReactMarkdown>
+      </div>
+      <div className={`msg-spacer ${msg.role === "user" ? "msg-right" : "msg-left"}`}>
+        <div 
+          className="msg-button"
+          onClick={async () => {
+            await navigator.clipboard.writeText(msg.message);
+            setCopied(true);
+          }}
+        >
+          {copied ? "Copied" : "Copy..."}
+        </div>
+      </div>
     </div>
   );
 }

@@ -12,9 +12,9 @@ const app = new Hono<{ Bindings: Bindings }>()
 const verifyHeader = (req) => {
   const authHeader = req.header('Authorization')
   if (authHeader && authHeader.startsWith('Bearer ')) {
-    return authHeader.substring(7);
+    return authHeader.substring(7)
   } else {
-    return "";
+    return ""
   }
 }
 
@@ -25,7 +25,7 @@ app.use('/chat', cors())
 // GET endpoint for getting history
 
 app.get('/chat', async (c) => {
-  const sessionId = verifyHeader(c.req);
+  const sessionId = verifyHeader(c.req)
   if (sessionId != "") {
     const stored = await c.env.CHAT_SESSIONS.get(sessionId)
     const chatHistory = stored ? JSON.parse(stored) : []
@@ -35,10 +35,10 @@ app.get('/chat', async (c) => {
   }
 })
 
-// DELETE endpoint for getting history
+// DELETE endpoint for deleting history
 
 app.delete('/chat', async (c) => {
-  const sessionId = verifyHeader(c.req);
+  const sessionId = verifyHeader(c.req)
   if (sessionId != "") {
     await c.env.CHAT_SESSIONS.delete(sessionId)
     return c.json({ msg: "deletion successful!" })

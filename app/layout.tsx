@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import Chat from "@/components/chat";
-import Icon from "@/components/icon";
 
 import { Inter } from 'next/font/google';
 
@@ -26,7 +24,7 @@ export default function RootLayout({
       className={` ${inter.className} h-full antialiased`}
     >
       <body id="body-flex">
-        <Chat/>
+        {children}
       </body>
     </html>
   );

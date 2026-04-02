@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Overview
 
-## Getting Started
+Welcome! This is a lightweight chatbot web app created for my technical assessment with Spotnana. The frontend is a single-page Next.js application written using TypeScript and hosted on Cloudflare Pages. The backend is a serverless Cloudflare Workers-based [Hono](https://hono.dev/) API. It queries the Google Gemini 3.1 API to return responses to the user and remembers conversations across sessions that have occured on the same browser. I used [Sass](https://sass-lang.com/) and [Motion](https://motion.dev/) for styling.
 
-First, run the development server:
+## [Visit the chatbot here.](https://spotnana-technical-assessment.pages.dev/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
++ Chat sessions
+    + The application is functionally conversational and can maintain extended chats.
++ Chat history
+    + The chatbot will remember chat logs across sessions that take place in the same browser. Each user is given an authorization token that is verified on the backend.
++ Chat deletion
+    + Pressing the "Clear chat..." button erases the chatbot's memory of the user, effectively beginning a new conversation.
++ Message copying
+    + Pressing the "Copy..." button will copy a user's query or an AI response to the clipboard.
++ API integration
+    + The backend API has GET, POST, and DELETE routes that support the above features. These routes require user verification via an authorization token sent in the header.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Limitations
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
++ Because of the lightweight nature of this Gemini model, the application can only use a limited amount of tokens per query. This makes it better at shorter tasks, but worse at generating open-ended or complex responses.
++ The user token is set in the client and stored in the browser. A real site that used these techniques would be vulnerable to XSS-style attacks; this site, however, has been set up purely for demonstrative purposes.

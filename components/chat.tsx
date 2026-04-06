@@ -25,6 +25,7 @@ function MessageBubble({ msg }: { msg: Message }) {
       className={`msg-parent ${msg.role === "user" ? "msg-right" : "msg-left"}`}
       onMouseLeave={() => setCopied(false)}
     >
+      {/* Individual message component */}
       <div className={`bubble msg`}>
         <ReactMarkdown>{msg.message}</ReactMarkdown>
       </div>
@@ -173,6 +174,7 @@ export default function Chat() {
 
   return (
     <div className="chatlog">
+      {/* Mssage display area */}
       <div className="messages-wrapper">
         <AnimatePresence>
           {chatLog.map((item, index) => (
@@ -202,7 +204,7 @@ export default function Chat() {
         </AnimatePresence>
         <div ref={messagesEndRef} />
       </div>
-
+      {/* Message input form */}
       <div className={chatLog.length > 0 ? "form" : "form form-centered"}>
         <div className="input-container bubble">
           <TextareaAutosize
@@ -234,6 +236,7 @@ export default function Chat() {
             )}
           </AnimatePresence>
         </div>
+        {/* Chat clear button */}
         <AnimatePresence>
           {chatLog.length > 0 && (
             <motion.div
@@ -254,7 +257,7 @@ export default function Chat() {
           )}
         </AnimatePresence>
       </div>
-
+      {/* Error message popup */}
       <AnimatePresence>
         {error && (
           <motion.div
@@ -274,6 +277,7 @@ export default function Chat() {
             </button>
           </motion.div>
         )}
+        {/* Chat clearing confirmation popup */}
         {clearing && (
           <motion.div
             className="blurrer error-msg"
@@ -304,6 +308,7 @@ export default function Chat() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* Initial pageload blur effect */}
       <motion.div
         className="blurrer"
         initial={{ opacity: 1 }}

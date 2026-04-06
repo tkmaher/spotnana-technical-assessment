@@ -1,4 +1,4 @@
-// ─── Custom Properties ────────────────────────────────────────────────────────
+// ─── Custom Properties 
 
 :root {
   --background:      #ffffff;
@@ -7,7 +7,7 @@
   --foreground-trans: #17171750;
 }
 
-// ─── Scrollbar ────────────────────────────────────────────────────────────────
+// ─── Scrollbar
 
 ::-webkit-scrollbar {
   width:  10px;
@@ -20,7 +20,7 @@
   border-radius: 10px;
 }
 
-// ─── Animations ───────────────────────────────────────────────────────────────
+// ─── Animations 
 
 @keyframes pulse {
   from { opacity: 0.5; }
@@ -31,7 +31,7 @@
   to { transform: translateX(200%); }
 }
 
-// ─── Base ─────────────────────────────────────────────────────────────────────
+// ─── Base 
 
 body {
   margin: 0;
@@ -58,7 +58,7 @@ body {
   }
 }
 
-// ─── Layout ───────────────────────────────────────────────────────────────────
+// ─── Layout 
 
 #body-flex {
   display: flex;
@@ -77,7 +77,7 @@ body {
   overflow-y: auto;
 }
 
-// ─── Messages ─────────────────────────────────────────────────────────────────
+// ─── Messages
 
 .messages-wrapper {
   display: flex;
@@ -158,7 +158,7 @@ body {
   }
 }
 
-// ─── Bubble ───────────────────────────────────────────────────────────────────
+// ─── Bubble 
 
 .bubble {
   border: 0.5px solid var(--foreground);
@@ -174,7 +174,7 @@ body {
 }
 
 
-// ─── Input Form ───────────────────────────────────────────────────────────────
+// ─── Input Form
 
 .form {
   position: fixed;
@@ -250,7 +250,7 @@ button {
   }
 }
 
-// ─── Blur effect ───────────────────────────────────────────────────────────────
+// ─── Blur effect
 
 .blurrer {
   position: fixed;
@@ -261,7 +261,7 @@ button {
   background-color: var(--background-trans);
 }
 
-// ─── Error message ───────────────────────────────────────────────────────────────
+// ─── Error message 
 
 .error-msg {
   display: flex;
@@ -283,7 +283,7 @@ button {
   }
 }
   
-// ─── Mobile ───────────────────────────────────────────────────────────────
+// ─── Mobile
 
 @media (pointer: coarse) {
 

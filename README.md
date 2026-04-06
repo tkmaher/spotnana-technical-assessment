@@ -6,6 +6,8 @@ The main frontend code can be found in /components/chat.tsx. The backend is loca
 
 ## [Visit the chatbot here.](https://spotnana-technical-assessment.pages.dev/)
 
+<img width="1470" height="835" alt="Screenshot 2026-04-02 at 2 04 23 PM" src="https://github.com/user-attachments/assets/c3e8b5b9-f18a-40e0-b0ea-ed15ef2b82cb" />
+
 ## Features
 
 + Chat sessions
